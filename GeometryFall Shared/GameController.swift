@@ -6,6 +6,7 @@
 //
 
 import SceneKit
+import SpriteKit
 
 #if os(macOS)
 typealias SCNColor = NSColor
@@ -17,10 +18,13 @@ class GameController: NSObject, SCNSceneRendererDelegate {
     
     let scene: SCNScene
     let sceneRenderer: SCNSceneRenderer
+    
+    private var hud: HudOverlayScene!
     private var cameraNode: SCNNode!
     private var cubeCreationTime: TimeInterval = 0
-    private let cubeCreationTimeout: TimeInterval = 0.8
     private var explosionParticleSystem: SCNParticleSystem!
+    
+    private let cubeCreationTimeout: TimeInterval = 0.8
     
     init(sceneRenderer renderer: SCNSceneRenderer) {
         sceneRenderer = renderer
@@ -34,13 +38,16 @@ class GameController: NSObject, SCNSceneRendererDelegate {
         sceneRenderer.autoenablesDefaultLighting = true
         
         cameraNode = createCameraNode()
-        scene.rootNode.addChildNode(cameraNode)
         
         let floorNode = FloorNode(width: 200,
                                   height: 200,
                                   position: .init(0, -10, 0),
                                   rotation: .init(-1, 0, 0, Float.pi/2))
         
+        hud = HudOverlayScene(size: (sceneRenderer as! SCNView).bounds.size)
+        sceneRenderer.overlaySKScene = hud
+        
+        scene.rootNode.addChildNode(cameraNode)
         scene.rootNode.addChildNode(floorNode)
         scene.physicsWorld.contactDelegate = self
     }
@@ -49,7 +56,7 @@ class GameController: NSObject, SCNSceneRendererDelegate {
         let cameraNode = SCNNode()
         cameraNode.camera = SCNCamera()
         cameraNode.camera?.zFar = 400
-        cameraNode.position = SCNVector3(x: 3, y: 35, z: 50)
+        cameraNode.position = .init(x: 3, y: 35, z: 50)
         return cameraNode
     }
     
@@ -76,9 +83,9 @@ class GameController: NSObject, SCNSceneRendererDelegate {
             scene.rootNode.addChildNode(explosion)
             node.removeFromParentNode()
             if node.isTarget {
-                scene.background.contents = node.geometry?.materials.first?.diffuse.contents
+                hud.score -= 1
             } else {
-                scene.background.contents = SCNColor.black
+                hud.score += 1
             }
         }
     }
