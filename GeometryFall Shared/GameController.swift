@@ -7,10 +7,6 @@
 
 import SceneKit
 
-#if os(watchOS)
-import WatchKit
-#endif
-
 #if os(macOS)
 typealias SCNColor = NSColor
 #else
@@ -24,6 +20,7 @@ class GameController: NSObject, SCNSceneRendererDelegate {
     private var cameraNode: SCNNode!
     private var cubeCreationTime: TimeInterval = 0
     private let cubeCreationTimeout: TimeInterval = 0.8
+    private var explosionParticleSystem: SCNParticleSystem!
     
     init(sceneRenderer renderer: SCNSceneRenderer) {
         sceneRenderer = renderer
@@ -31,14 +28,20 @@ class GameController: NSObject, SCNSceneRendererDelegate {
         
         super.init()
         
+        explosionParticleSystem = loadParticleSystem(sceneName: "ParticleSystem.scn", systemName: "explosion")
         sceneRenderer.delegate = self
         sceneRenderer.scene = scene
         sceneRenderer.autoenablesDefaultLighting = true
         
         cameraNode = createCameraNode()
         scene.rootNode.addChildNode(cameraNode)
-        scene.rootNode.addChildNode(createPlane())
         
+        let floorNode = FloorNode(width: 200,
+                                  height: 200,
+                                  position: .init(0, -10, 0),
+                                  rotation: .init(-1, 0, 0, Float.pi/2))
+        
+        scene.rootNode.addChildNode(floorNode)
         scene.physicsWorld.contactDelegate = self
     }
     
@@ -50,22 +53,27 @@ class GameController: NSObject, SCNSceneRendererDelegate {
         return cameraNode
     }
     
-    private func createPlane() -> SCNNode {
-        let plane = SCNPlane(width: 200, height: 200)
-        plane.materials.first?.diffuse.contents = SCNColor.green
-        let node = SCNNode(geometry: plane)
-        node.position = .init(0, -10, 0)
-        node.rotation = .init(-1, 0, 0, Float.pi/2)
-        node.physicsBody = .init(type: .static, shape: nil)
-        node.physicsBody?.categoryBitMask = 1
-        node.physicsBody?.collisionBitMask = 2
-        node.physicsBody?.contactTestBitMask = 2
-        node.name = "floor"
-        return node
+    private func loadParticleSystem(sceneName: String, systemName: String) -> SCNParticleSystem {
+        guard let particleSystem = SCNScene(named: sceneName)?
+                .rootNode
+                .childNode(withName: systemName, recursively: true)?
+                .particleSystems?
+                .first else { fatalError("Was not able to load particle system!") }
+        
+        return particleSystem
+    }
+    
+    private func createParticleNode(at position: SCNVector3) -> SCNNode {
+        let particleNode = SCNNode()
+        particleNode.position = position
+        particleNode.addParticleSystem(explosionParticleSystem)
+        return particleNode
     }
     
     func handleHit(at location: CGPoint) {
         if let node = sceneRenderer.hitTest(location, options: nil).first?.node as? GameBoxNode {
+            let explosion = createParticleNode(at: node.presentation.position)
+            scene.rootNode.addChildNode(explosion)
             node.removeFromParentNode()
             if node.isTarget {
                 scene.background.contents = node.geometry?.materials.first?.diffuse.contents
@@ -86,7 +94,28 @@ class GameController: NSObject, SCNSceneRendererDelegate {
     }
 }
 
+class FloorNode : SCNNode {
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
+    init(width: CGFloat, height: CGFloat, position: SCNVector3, rotation: SCNVector4) {
+        super.init()
+        let plane = SCNPlane(width: width, height: height)
+        plane.materials.first?.diffuse.contents = SCNColor.green
+        
+        self.geometry = plane
+        self.position = position
+        self.rotation = rotation
+        self.physicsBody = .init(type: .static, shape: nil)
+        self.physicsBody?.categoryBitMask = 1
+        self.physicsBody?.collisionBitMask = 2
+        self.physicsBody?.contactTestBitMask = 2
+    }
+}
+
 class GameBoxNode : SCNNode {
+    
     let isTarget: Bool
     
     required init?(coder: NSCoder) {
@@ -111,9 +140,9 @@ class GameBoxNode : SCNNode {
 
 extension GameController: SCNPhysicsContactDelegate {
     func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
-        if contact.nodeA is GameBoxNode, contact.nodeB.name == "floor" {
+        if contact.nodeA is GameBoxNode, contact.nodeB is FloorNode {
             contact.nodeA.removeFromParentNode()
-        } else if contact.nodeA.name == "floor", contact.nodeB is GameBoxNode {
+        } else if contact.nodeA is FloorNode, contact.nodeB is GameBoxNode {
             contact.nodeB.removeFromParentNode()
         }
     }

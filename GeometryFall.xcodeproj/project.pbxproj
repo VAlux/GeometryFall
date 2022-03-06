@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3207104E27D4E6A500DE8AFE /* ParticleSystem.scn in Resources */ = {isa = PBXBuildFile; fileRef = 3207104D27D4E6A500DE8AFE /* ParticleSystem.scn */; };
+		3207104F27D4E6A500DE8AFE /* ParticleSystem.scn in Resources */ = {isa = PBXBuildFile; fileRef = 3207104D27D4E6A500DE8AFE /* ParticleSystem.scn */; };
 		326ECD2F27D3A9550006CDF5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326ECD2E27D3A9550006CDF5 /* AppDelegate.swift */; };
 		326ECD3127D3A9550006CDF5 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326ECD3027D3A9550006CDF5 /* GameViewController.swift */; };
 		326ECD3427D3A9550006CDF5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 326ECD3227D3A9550006CDF5 /* Main.storyboard */; };
@@ -21,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3207104D27D4E6A500DE8AFE /* ParticleSystem.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = ParticleSystem.scn; sourceTree = "<group>"; };
 		326ECD2427D3A9540006CDF5 /* GameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameController.swift; sourceTree = "<group>"; };
 		326ECD2627D3A9550006CDF5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		326ECD2B27D3A9550006CDF5 /* GeometryFall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GeometryFall.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -68,6 +71,7 @@
 			children = (
 				326ECD2427D3A9540006CDF5 /* GameController.swift */,
 				326ECD2627D3A9550006CDF5 /* Assets.xcassets */,
+				3207104D27D4E6A500DE8AFE /* ParticleSystem.scn */,
 			);
 			path = "GeometryFall Shared";
 			sourceTree = "<group>";
@@ -183,6 +187,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				326ECD3427D3A9550006CDF5 /* Main.storyboard in Resources */,
+				3207104E27D4E6A500DE8AFE /* ParticleSystem.scn in Resources */,
 				326ECD3727D3A9550006CDF5 /* LaunchScreen.storyboard in Resources */,
 				326ECD4A27D3A9550006CDF5 /* Assets.xcassets in Resources */,
 			);
@@ -194,6 +199,7 @@
 			files = (
 				326ECD4427D3A9550006CDF5 /* Main.storyboard in Resources */,
 				326ECD4B27D3A9550006CDF5 /* Assets.xcassets in Resources */,
+				3207104F27D4E6A500DE8AFE /* ParticleSystem.scn in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
