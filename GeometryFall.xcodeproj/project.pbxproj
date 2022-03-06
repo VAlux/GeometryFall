@@ -16,26 +16,23 @@
 		326ECD4427D3A9550006CDF5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 326ECD4227D3A9550006CDF5 /* Main.storyboard */; };
 		326ECD4627D3A9550006CDF5 /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326ECD2427D3A9540006CDF5 /* GameController.swift */; };
 		326ECD4727D3A9550006CDF5 /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326ECD2427D3A9540006CDF5 /* GameController.swift */; };
-		326ECD4827D3A9550006CDF5 /* Art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 326ECD2527D3A9540006CDF5 /* Art.scnassets */; };
-		326ECD4927D3A9550006CDF5 /* Art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 326ECD2527D3A9540006CDF5 /* Art.scnassets */; };
 		326ECD4A27D3A9550006CDF5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 326ECD2627D3A9550006CDF5 /* Assets.xcassets */; };
 		326ECD4B27D3A9550006CDF5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 326ECD2627D3A9550006CDF5 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		326ECD2427D3A9540006CDF5 /* GameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameController.swift; sourceTree = "<group>"; };
-		326ECD2527D3A9540006CDF5 /* Art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Art.scnassets; sourceTree = "<group>"; };
 		326ECD2627D3A9550006CDF5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		326ECD2B27D3A9550006CDF5 /* SceneKitPlayground.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SceneKitPlayground.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		326ECD2B27D3A9550006CDF5 /* GeometryFall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GeometryFall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		326ECD2E27D3A9550006CDF5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		326ECD3027D3A9550006CDF5 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		326ECD3327D3A9550006CDF5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		326ECD3627D3A9550006CDF5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		326ECD3C27D3A9550006CDF5 /* SceneKitPlayground.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SceneKitPlayground.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		326ECD3C27D3A9550006CDF5 /* GeometryFall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GeometryFall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		326ECD3E27D3A9550006CDF5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		326ECD4027D3A9550006CDF5 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		326ECD4327D3A9550006CDF5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		326ECD4527D3A9550006CDF5 /* SceneKitPlayground_macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SceneKitPlayground_macOS.entitlements; sourceTree = "<group>"; };
+		326ECD4527D3A9550006CDF5 /* GeometryFall_macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GeometryFall_macOS.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,33 +56,32 @@
 		326ECD1E27D3A9540006CDF5 = {
 			isa = PBXGroup;
 			children = (
-				326ECD2327D3A9540006CDF5 /* SceneKitPlayground Shared */,
-				326ECD2D27D3A9550006CDF5 /* SceneKitPlayground iOS */,
-				326ECD3D27D3A9550006CDF5 /* SceneKitPlayground macOS */,
+				326ECD2327D3A9540006CDF5 /* GeometryFall Shared */,
+				326ECD2D27D3A9550006CDF5 /* GeometryFall iOS */,
+				326ECD3D27D3A9550006CDF5 /* GeometryFall macOS */,
 				326ECD2C27D3A9550006CDF5 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		326ECD2327D3A9540006CDF5 /* SceneKitPlayground Shared */ = {
+		326ECD2327D3A9540006CDF5 /* GeometryFall Shared */ = {
 			isa = PBXGroup;
 			children = (
 				326ECD2427D3A9540006CDF5 /* GameController.swift */,
-				326ECD2527D3A9540006CDF5 /* Art.scnassets */,
 				326ECD2627D3A9550006CDF5 /* Assets.xcassets */,
 			);
-			path = "SceneKitPlayground Shared";
+			path = "GeometryFall Shared";
 			sourceTree = "<group>";
 		};
 		326ECD2C27D3A9550006CDF5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				326ECD2B27D3A9550006CDF5 /* SceneKitPlayground.app */,
-				326ECD3C27D3A9550006CDF5 /* SceneKitPlayground.app */,
+				326ECD2B27D3A9550006CDF5 /* GeometryFall.app */,
+				326ECD3C27D3A9550006CDF5 /* GeometryFall.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		326ECD2D27D3A9550006CDF5 /* SceneKitPlayground iOS */ = {
+		326ECD2D27D3A9550006CDF5 /* GeometryFall iOS */ = {
 			isa = PBXGroup;
 			children = (
 				326ECD2E27D3A9550006CDF5 /* AppDelegate.swift */,
@@ -93,26 +89,26 @@
 				326ECD3227D3A9550006CDF5 /* Main.storyboard */,
 				326ECD3527D3A9550006CDF5 /* LaunchScreen.storyboard */,
 			);
-			path = "SceneKitPlayground iOS";
+			path = "GeometryFall iOS";
 			sourceTree = "<group>";
 		};
-		326ECD3D27D3A9550006CDF5 /* SceneKitPlayground macOS */ = {
+		326ECD3D27D3A9550006CDF5 /* GeometryFall macOS */ = {
 			isa = PBXGroup;
 			children = (
 				326ECD3E27D3A9550006CDF5 /* AppDelegate.swift */,
 				326ECD4027D3A9550006CDF5 /* GameViewController.swift */,
 				326ECD4227D3A9550006CDF5 /* Main.storyboard */,
-				326ECD4527D3A9550006CDF5 /* SceneKitPlayground_macOS.entitlements */,
+				326ECD4527D3A9550006CDF5 /* GeometryFall_macOS.entitlements */,
 			);
-			path = "SceneKitPlayground macOS";
+			path = "GeometryFall macOS";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		326ECD2A27D3A9550006CDF5 /* SceneKitPlayground iOS */ = {
+		326ECD2A27D3A9550006CDF5 /* GeometryFall iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 326ECD4E27D3A9550006CDF5 /* Build configuration list for PBXNativeTarget "SceneKitPlayground iOS" */;
+			buildConfigurationList = 326ECD4E27D3A9550006CDF5 /* Build configuration list for PBXNativeTarget "GeometryFall iOS" */;
 			buildPhases = (
 				326ECD2727D3A9550006CDF5 /* Sources */,
 				326ECD2827D3A9550006CDF5 /* Frameworks */,
@@ -122,14 +118,14 @@
 			);
 			dependencies = (
 			);
-			name = "SceneKitPlayground iOS";
+			name = "GeometryFall iOS";
 			productName = "SceneKitPlayground iOS";
-			productReference = 326ECD2B27D3A9550006CDF5 /* SceneKitPlayground.app */;
+			productReference = 326ECD2B27D3A9550006CDF5 /* GeometryFall.app */;
 			productType = "com.apple.product-type.application";
 		};
-		326ECD3B27D3A9550006CDF5 /* SceneKitPlayground macOS */ = {
+		326ECD3B27D3A9550006CDF5 /* GeometryFall macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 326ECD5127D3A9550006CDF5 /* Build configuration list for PBXNativeTarget "SceneKitPlayground macOS" */;
+			buildConfigurationList = 326ECD5127D3A9550006CDF5 /* Build configuration list for PBXNativeTarget "GeometryFall macOS" */;
 			buildPhases = (
 				326ECD3827D3A9550006CDF5 /* Sources */,
 				326ECD3927D3A9550006CDF5 /* Frameworks */,
@@ -139,9 +135,9 @@
 			);
 			dependencies = (
 			);
-			name = "SceneKitPlayground macOS";
+			name = "GeometryFall macOS";
 			productName = "SceneKitPlayground macOS";
-			productReference = 326ECD3C27D3A9550006CDF5 /* SceneKitPlayground.app */;
+			productReference = 326ECD3C27D3A9550006CDF5 /* GeometryFall.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -162,7 +158,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 326ECD2227D3A9540006CDF5 /* Build configuration list for PBXProject "SceneKitPlayground" */;
+			buildConfigurationList = 326ECD2227D3A9540006CDF5 /* Build configuration list for PBXProject "GeometryFall" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -175,8 +171,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				326ECD2A27D3A9550006CDF5 /* SceneKitPlayground iOS */,
-				326ECD3B27D3A9550006CDF5 /* SceneKitPlayground macOS */,
+				326ECD2A27D3A9550006CDF5 /* GeometryFall iOS */,
+				326ECD3B27D3A9550006CDF5 /* GeometryFall macOS */,
 			);
 		};
 /* End PBXProject section */
@@ -189,7 +185,6 @@
 				326ECD3427D3A9550006CDF5 /* Main.storyboard in Resources */,
 				326ECD3727D3A9550006CDF5 /* LaunchScreen.storyboard in Resources */,
 				326ECD4A27D3A9550006CDF5 /* Assets.xcassets in Resources */,
-				326ECD4827D3A9550006CDF5 /* Art.scnassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,7 +194,6 @@
 			files = (
 				326ECD4427D3A9550006CDF5 /* Main.storyboard in Resources */,
 				326ECD4B27D3A9550006CDF5 /* Assets.xcassets in Resources */,
-				326ECD4927D3A9550006CDF5 /* Art.scnassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,8 +382,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.alvo.SceneKitPlayground;
-				PRODUCT_NAME = SceneKitPlayground;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alvo.GeometryFall;
+				PRODUCT_NAME = GeometryFall;
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -418,8 +412,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.alvo.SceneKitPlayground;
-				PRODUCT_NAME = SceneKitPlayground;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alvo.GeometryFall;
+				PRODUCT_NAME = GeometryFall;
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -433,7 +427,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "SceneKitPlayground macOS/SceneKitPlayground_macOS.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "GeometryFall macOS/GeometryFall_macOS.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -449,8 +443,8 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.1;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.alvo.SceneKitPlayground;
-				PRODUCT_NAME = SceneKitPlayground;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alvo.GeometryFall;
+				PRODUCT_NAME = GeometryFall;
 				SDKROOT = macosx;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -462,7 +456,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "SceneKitPlayground macOS/SceneKitPlayground_macOS.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "GeometryFall macOS/GeometryFall_macOS.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -478,8 +472,8 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.1;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.alvo.SceneKitPlayground;
-				PRODUCT_NAME = SceneKitPlayground;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alvo.GeometryFall;
+				PRODUCT_NAME = GeometryFall;
 				SDKROOT = macosx;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -489,7 +483,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		326ECD2227D3A9540006CDF5 /* Build configuration list for PBXProject "SceneKitPlayground" */ = {
+		326ECD2227D3A9540006CDF5 /* Build configuration list for PBXProject "GeometryFall" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				326ECD4C27D3A9550006CDF5 /* Debug */,
@@ -498,7 +492,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		326ECD4E27D3A9550006CDF5 /* Build configuration list for PBXNativeTarget "SceneKitPlayground iOS" */ = {
+		326ECD4E27D3A9550006CDF5 /* Build configuration list for PBXNativeTarget "GeometryFall iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				326ECD4F27D3A9550006CDF5 /* Debug */,
@@ -507,7 +501,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		326ECD5127D3A9550006CDF5 /* Build configuration list for PBXNativeTarget "SceneKitPlayground macOS" */ = {
+		326ECD5127D3A9550006CDF5 /* Build configuration list for PBXNativeTarget "GeometryFall macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				326ECD5227D3A9550006CDF5 /* Debug */,

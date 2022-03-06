@@ -22,16 +22,17 @@ class GameViewController: NSViewController {
         self.gameController = GameController(sceneRenderer: gameView)
         
         // Allow the user to manipulate the camera
-        self.gameView.allowsCameraControl = true
+        self.gameView.allowsCameraControl = false
         
         // Show statistics such as fps and timing information
-        self.gameView.showsStatistics = true
+        self.gameView.showsStatistics = false
         
         // Configure the view
         self.gameView.backgroundColor = NSColor.black
         
         // Add a click gesture recognizer
-        let clickGesture = NSClickGestureRecognizer(target: self, action: #selector(handleClick(_:)))
+        let clickGesture = NSPressGestureRecognizer(target: self, action: #selector(handleClick(_:)))
+        clickGesture.minimumPressDuration = 0
         var gestureRecognizers = gameView.gestureRecognizers
         gestureRecognizers.insert(clickGesture, at: 0)
         self.gameView.gestureRecognizers = gestureRecognizers
@@ -39,9 +40,6 @@ class GameViewController: NSViewController {
     
     @objc
     func handleClick(_ gestureRecognizer: NSGestureRecognizer) {
-        // Highlight the clicked nodes
-        let p = gestureRecognizer.location(in: gameView)
-        gameController.highlightNodes(atPoint: p)
+        gameController.handleHit(at: gestureRecognizer.location(in: gameView))
     }
-    
 }

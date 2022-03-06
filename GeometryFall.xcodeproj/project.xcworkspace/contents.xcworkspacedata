@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:">
+      location = "self:/Users/alvo/projects/SceneKitPlayground/GeometryFall.xcodeproj">
    </FileRef>
 </Workspace>

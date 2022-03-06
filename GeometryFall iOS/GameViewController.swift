@@ -22,26 +22,15 @@ class GameViewController: UIViewController {
         self.gameController = GameController(sceneRenderer: gameView)
         
         // Allow the user to manipulate the camera
-        self.gameView.allowsCameraControl = true
-        
-        // Show statistics such as fps and timing information
-        self.gameView.showsStatistics = true
+        self.gameView.allowsCameraControl = false
         
         // Configure the view
         self.gameView.backgroundColor = UIColor.black
-        
-        // Add a tap gesture recognizer
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
-        var gestureRecognizers = gameView.gestureRecognizers ?? []
-        gestureRecognizers.insert(tapGesture, at: 0)
-        self.gameView.gestureRecognizers = gestureRecognizers
     }
     
-    @objc
-    func handleTap(_ gestureRecognizer: UIGestureRecognizer) {
-        // Highlight the tapped nodes
-        let p = gestureRecognizer.location(in: gameView)
-        gameController.highlightNodes(atPoint: p)
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let point = touches.first?.location(in: gameView) else { return }
+        gameController.handleHit(at: point)
     }
     
     override var shouldAutorotate: Bool {
@@ -59,5 +48,4 @@ class GameViewController: UIViewController {
     override var prefersStatusBarHidden: Bool {
         return true
     }
-
 }
