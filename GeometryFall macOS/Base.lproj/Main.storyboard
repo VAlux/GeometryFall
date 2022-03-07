@@ -706,7 +706,7 @@
         <!--Game View Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController id="XfG-lQ-9wD" customClass="GameViewController" customModule="SceneKitPlayground" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="XfG-lQ-9wD" customClass="GameViewController" customModule="GeometryFall" customModuleProvider="target" sceneMemberID="viewController">
                     <sceneView key="view" id="7h8-g6-1XM">
                         <rect key="frame" x="0.0" y="0.0" width="800" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
