@@ -12,12 +12,8 @@ class HudOverlayScene : SKScene {
     
     var scoreNode: SKLabelNode!
     
-    var score: Int = 0 {
+    var score: UInt = 0 {
         didSet {
-            if score < 0 {
-                score = oldValue
-            }
-            
             scoreNode.text = "Score: \(score)"
         }
     }
@@ -36,8 +32,6 @@ class HudOverlayScene : SKScene {
         scoreNode.fontColor = SCNColor.white
         scoreNode.fontSize = size.height / 20
         scoreNode.position = .init(x: size.width / 8, y: 10)
-        
-        print("size is : \(size)")
         
         addChild(scoreNode)
     }

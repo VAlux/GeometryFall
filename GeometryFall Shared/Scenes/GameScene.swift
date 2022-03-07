@@ -9,14 +9,13 @@ import Foundation
 import SceneKit
 
 class GameScene : SCNScene, SCNSceneRendererDelegate {
-    private var renderer: SCNSceneRenderer!
     
+    private var renderer: SCNSceneRenderer!
     private var hud: HudOverlayScene!
     private var cameraNode: SCNNode!
     private var cubeCreationTime: TimeInterval = 0
-    private var explosionParticleSystem: SCNParticleSystem!
-    
     private let cubeCreationTimeout: TimeInterval = 0.8
+    private var explosionParticleSystem: SCNParticleSystem!
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -29,7 +28,7 @@ class GameScene : SCNScene, SCNSceneRendererDelegate {
         renderer.delegate = self
         physicsWorld.contactDelegate = self
         
-        explosionParticleSystem = loadParticleSystem(from: "ParticleSystem.scn", withName: "explosion")
+        explosionParticleSystem = loadParticleSystem(from: "ExplosionParticleSystem.scn", withName: "explosion")
         cameraNode = createCameraNode()
         
         let floorNode = FloorNode(width: 200,
@@ -37,7 +36,8 @@ class GameScene : SCNScene, SCNSceneRendererDelegate {
                                   position: .init(0, -10, 0),
                                   rotation: .init(-1, 0, 0, Float.pi/2))
         
-        sceneRenderer.overlaySKScene = HudOverlayScene(size: (sceneRenderer as! SCNView).bounds.size)
+        hud = HudOverlayScene(size: (sceneRenderer as! SCNView).bounds.size)
+        sceneRenderer.overlaySKScene = hud
         
         rootNode.addChildNode(cameraNode)
         rootNode.addChildNode(floorNode)
@@ -74,7 +74,9 @@ class GameScene : SCNScene, SCNSceneRendererDelegate {
             rootNode.addChildNode(explosion)
             node.removeFromParentNode()
             if node.isTarget {
-                hud.score -= 1
+                if hud.score > 0 {
+                    hud.score -= 1
+                }
             } else {
                 hud.score += 1
             }
