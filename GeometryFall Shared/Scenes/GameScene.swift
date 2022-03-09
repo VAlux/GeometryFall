@@ -65,6 +65,8 @@ class GameScene : SCNScene, SCNSceneRendererDelegate {
         let particleNode = SCNNode()
         particleNode.position = position
         particleNode.addParticleSystem(explosionParticleSystem)
+        
+        
         return particleNode
     }
     
@@ -94,7 +96,7 @@ class GameScene : SCNScene, SCNSceneRendererDelegate {
     }
 }
 
-class FloorNode : SCNNode {
+private class FloorNode : SCNNode {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
@@ -114,7 +116,7 @@ class FloorNode : SCNNode {
     }
 }
 
-class GameBoxNode : SCNNode {
+private class GameBoxNode : SCNNode {
     
     let isTarget: Bool
     

@@ -12,6 +12,9 @@ class HudOverlayScene : SKScene {
     
     var scoreNode: SKLabelNode!
     
+    private let scoreLabelPadding = 10
+    private let scoreLabelFontScale = CGFloat(20)
+    
     var score: UInt = 0 {
         didSet {
             scoreNode.text = "Score: \(score)"
@@ -27,13 +30,15 @@ class HudOverlayScene : SKScene {
         backgroundColor = SCNColor.clear
         
         isUserInteractionEnabled = false
+        scaleMode = .aspectFit
         
         scoreNode = SKLabelNode(text: "Score: 0")
         scoreNode.fontColor = SCNColor.white
-        scoreNode.fontSize = size.height / 20
-        scoreNode.position = .init(x: size.width / 8, y: 10)
-        
+        scoreNode.fontSize = size.height / scoreLabelFontScale
+        scoreNode.verticalAlignmentMode = .bottom
+        scoreNode.horizontalAlignmentMode = .left
+        scoreNode.position = .init(x: scoreLabelPadding, y: scoreLabelPadding)
+       
         addChild(scoreNode)
     }
 }
-
