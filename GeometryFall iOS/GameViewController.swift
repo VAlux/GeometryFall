@@ -21,26 +21,25 @@ class GameViewController: UIViewController {
         
         self.gameController = GameController(sceneRenderer: gameView)
         
-        // Allow the user to manipulate the camera
         self.gameView.allowsCameraControl = false
-        
-        // Configure the view
         self.gameView.backgroundColor = UIColor.black
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    private func dispatchTouchAction(for action: (CGPoint) -> Void, using touches: Set<UITouch>) {
         guard let point = touches.first?.location(in: gameView) else { return }
-        gameController.handleTouchesBegan(at: point)
+        action(point)
     }
     
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let point = touches.first?.location(in: gameView) else { return }
-        gameController.handleTouchesEnded(at: point)
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        dispatchTouchAction(for: gameController.handleTouchesBegan, using: touches)
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let point = touches.first?.location(in: gameView) else { return }
-        gameController.handleTouchesMoved(at: point)
+        dispatchTouchAction(for: gameController.handleTouchesMoved, using: touches)
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        dispatchTouchAction(for: gameController.handleTouchesEnded, using: touches)
     }
     
     override var shouldAutorotate: Bool {
