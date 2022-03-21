@@ -8,12 +8,12 @@
 import Foundation
 import SpriteKit
 
-class ButtonNode: SKSpriteNode {
+public class ButtonNode: SKSpriteNode {
     
     private var regularTexture: SKTexture!
     private var pressedTexture: SKTexture?
     private var disabledTexture: SKTexture?
-    private var clickAction: ((SKSpriteNode) -> Void)!
+    private var clickAction: ((ButtonNode) -> Void)?
     
     var isEnabled: Bool = true {
         didSet {
@@ -44,31 +44,42 @@ class ButtonNode: SKSpriteNode {
         self.isUserInteractionEnabled = true
     }
     
-    func setClickAction(with action: @escaping (SKSpriteNode) -> Void) {
-        self.clickAction = click
+    func setClickAction(with action: @escaping (ButtonNode) -> Void) {
+        self.clickAction = action
     }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if isEnabled {
+}
+
+extension ButtonNode : Clickable {
+    func handleTouchesBegan(at location: CGPoint) -> Bool {
+        if isEnabled && frame.contains(location) {
             isPressed = true
-            clickAction(self)
+            clickAction?(self)
+            return true
         }
+        
+        return false
     }
     
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+    func handleTouchesMoved(at location: CGPoint) -> Bool {
         if isEnabled {
-            guard let touchLocation = touches.first?.location(in: parent!) else { return }
-            if frame.contains(touchLocation) {
+            if frame.contains(location) {
                 isPressed = true
             } else {
                 isPressed = false
             }
+            
+            return isPressed
         }
+        
+        return false
     }
     
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    func handleTouchesEnded(at location: CGPoint) -> Bool {
         if isEnabled {
             isPressed = false
+            return true
         }
+        
+        return false
     }
 }

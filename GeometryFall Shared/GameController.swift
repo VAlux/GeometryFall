@@ -24,14 +24,34 @@ class GameController: NSObject {
     private var cubeCreationTime: TimeInterval = 0
     private var explosionParticleSystem: SCNParticleSystem!
     
+    public let dispatcher = InputDispatcher()
+    
     init(sceneRenderer renderer: SCNSceneRenderer) {
-        scene = GameScene(renderer: renderer)
+        scene = GameScene(renderer: renderer, dispatcher: dispatcher)
         super.init()
         
         renderer.scene = scene
     }
     
-    func handleHit(at location: CGPoint) {
-        scene.handleHit(at: location)
+    func handleTouchesBegan(at location: CGPoint) {
+        if dispatcher.handleTouchesBegan(at: location) {
+            return
+        }
+        
+        scene.handleClick(at: location)
+    }
+    
+    func handleTouchesMoved(at location: CGPoint) {
+        if dispatcher.handleTouchesMoved(at: location) {
+            return
+        }
+        
+        scene.handleClick(at: location)
+    }
+    
+    func handleTouchesEnded(at location: CGPoint) {
+        if dispatcher.hadleTouchesEnded(at: location) {
+            return
+        }
     }
 }

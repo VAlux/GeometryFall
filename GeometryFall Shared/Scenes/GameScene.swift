@@ -16,16 +16,20 @@ class GameScene : SCNScene, SCNSceneRendererDelegate {
     private var cubeCreationTime: TimeInterval = 0
     private let cubeCreationTimeout: TimeInterval = 0.8
     private var explosionParticleSystem: SCNParticleSystem!
+    private var dispatcher: InputDispatcher!
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
     
-    init(renderer sceneRenderer: SCNSceneRenderer) {
+    init(renderer sceneRenderer: SCNSceneRenderer, dispatcher inputDispatcher: InputDispatcher) {
         super.init()
+        self.dispatcher = inputDispatcher
+        
         renderer = sceneRenderer
         renderer.autoenablesDefaultLighting = true
         renderer.delegate = self
+        
         physicsWorld.contactDelegate = self
         
         explosionParticleSystem = loadParticleSystem(from: "ExplosionParticleSystem.scn", withName: "explosion")
@@ -36,7 +40,7 @@ class GameScene : SCNScene, SCNSceneRendererDelegate {
                                   position: .init(0, -10, 0),
                                   rotation: .init(-1, 0, 0, Float.pi/2))
         
-        hud = HudOverlayScene(size: (sceneRenderer as! SCNView).bounds.size)
+        hud = HudOverlayScene(size: (sceneRenderer as! SCNView).bounds.size, dispatcher: dispatcher)
         sceneRenderer.overlaySKScene = hud
         
         rootNode.addChildNode(cameraNode)
@@ -70,7 +74,7 @@ class GameScene : SCNScene, SCNSceneRendererDelegate {
         return particleNode
     }
     
-    func handleHit(at location: CGPoint) {
+    func handleClick(at location: CGPoint) {
         if let node = renderer.hitTest(location, options: nil).first?.node as? GameBoxNode {
             let explosion = createParticleNode(at: node.presentation.position)
             rootNode.addChildNode(explosion)

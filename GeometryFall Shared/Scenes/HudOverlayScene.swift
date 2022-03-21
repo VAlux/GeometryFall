@@ -11,6 +11,8 @@ import SpriteKit
 class HudOverlayScene : SKScene {
     
     var scoreNode: SKLabelNode!
+    var pauseButton: ButtonNode!
+    var dispatcher: InputDispatcher!
     
     private let scoreLabelPadding = 10
     private let scoreLabelFontScale = CGFloat(20)
@@ -25,7 +27,9 @@ class HudOverlayScene : SKScene {
         super.init(coder: coder)
     }
     
-    override init(size: CGSize) {
+    init(size: CGSize, dispatcher inputDispatcher: InputDispatcher) {
+        self.dispatcher = inputDispatcher
+        
         super.init(size: size)
         backgroundColor = SCNColor.clear
         
@@ -38,7 +42,17 @@ class HudOverlayScene : SKScene {
         scoreNode.verticalAlignmentMode = .bottom
         scoreNode.horizontalAlignmentMode = .left
         scoreNode.position = .init(x: scoreLabelPadding, y: scoreLabelPadding)
+        
+        pauseButton = ButtonNode(
+            regularTexture: SKTexture(imageNamed: "Pause Button"),
+            pressedTexture: SKTexture(imageNamed: "Play Button"),
+            disabledTexture: nil)
+        
+        pauseButton.position = .init(x: 50, y: 50)
+        pauseButton.size = .init(width: 50, height: 50)
+        dispatcher.register(target: pauseButton)
        
         addChild(scoreNode)
+        addChild(pauseButton)
     }
 }
