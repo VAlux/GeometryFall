@@ -39,7 +39,6 @@ class GameScene : SCNScene, SCNSceneRendererDelegate {
                                   position: .init(0, -10, 0),
                                   rotation: .init(-1, 0, 0, Float.pi/2))
         
-//        self.hud = HudOverlayScene(size: (sceneRenderer as! SCNView).bounds.size)
         self.hud = SKScene(fileNamed: "HUDScene") as? HudOverlayScene
         self.renderer.overlaySKScene = hud
         

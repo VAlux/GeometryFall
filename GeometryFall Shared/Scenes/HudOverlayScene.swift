@@ -10,22 +10,21 @@ import SpriteKit
 
 class HudOverlayScene : SKScene {
     
-    var scoreNode: SKLabelNode!
-    var pauseButton: ButtonNode!
+    var scoreLabelNode: SKLabelNode!
+    var pauseButtonNode: ButtonNode!
     
-    private let scoreLabelPadding = 10
+    private let scoreLabelPadding = CGFloat(50)
     private let pauseButtonSize = CGFloat(50)
     private let scoreLabelFontScale = CGFloat(20)
     
     var score: UInt = 0 {
         didSet {
-            scoreNode.text = "Score: \(score)"
+            self.scoreLabelNode.text = "Score: \(score)"
         }
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        self.scoreNode = coder.decodeObject(of: SKLabelNode.self, forKey: "ScoreLabel")
     }
     
     override init(size: CGSize) {
@@ -33,29 +32,39 @@ class HudOverlayScene : SKScene {
         backgroundColor = SCNColor.clear
         
         isUserInteractionEnabled = false
-        scaleMode = .aspectFit
+        scaleMode = .aspectFill
+    }
+    
+    private func recalculateNodesDimensions() {
+        let center = CGPoint(x: size.width / 2, y: size.height / 2)
         
-        scoreNode = SKLabelNode(text: "Score: 0")
-        scoreNode.fontColor = SCNColor.white
-        scoreNode.fontSize = size.height / scoreLabelFontScale
-        scoreNode.verticalAlignmentMode = .bottom
-        scoreNode.horizontalAlignmentMode = .left
-        scoreNode.position = .init(x: scoreLabelPadding, y: scoreLabelPadding)
+        if let scoreLabel = childNode(withName: "ScoreLabel") as? SKLabelNode {
+            self.scoreLabelNode = scoreLabel
+        } else { return }
         
-        pauseButton = ButtonNode(
-            regularTexture: SKTexture(imageNamed: "Pause Button"),
-            pressedTexture: SKTexture(imageNamed: "Play Button"),
-            disabledTexture: nil)
+        self.scoreLabelNode.fontColor = SCNColor.white
+        self.scoreLabelNode.fontSize = size.height / scoreLabelFontScale
+        self.scoreLabelNode.verticalAlignmentMode = .bottom
+        self.scoreLabelNode.horizontalAlignmentMode = .left
+        self.scoreLabelNode.position =
+            .init(x: center.x - (size.width - scoreLabelPadding), y: center.y - (size.height - scoreLabelPadding))
         
-        pauseButton.position = .init(x: frame.width - pauseButtonSize, y: frame.height - pauseButtonSize)
-        pauseButton.size = .init(width: pauseButtonSize, height: pauseButtonSize)
-       
-        addChild(scoreNode)
-        addChild(pauseButton)
+        if let pauseButton = childNode(withName: "PlayButton") as? ButtonNode {
+            self.pauseButtonNode = pauseButton
+        } else { return }
+
+        self.pauseButtonNode.position = .init(x: center.x - pauseButtonSize, y: center.y - pauseButtonSize)
+        self.pauseButtonNode.size = .init(width: pauseButtonSize, height: pauseButtonSize)
+    }
+    
+    override func didChangeSize(_ oldSize: CGSize) {
+        super.didChangeSize(oldSize)
+        recalculateNodesDimensions()
     }
     
     override func didMove(to view: SKView) {
         super.didMove(to: view)
-        childNode(withName: "")
+        size = view.frame.size
+        recalculateNodesDimensions()
     }
 }

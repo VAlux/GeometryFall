@@ -24,13 +24,9 @@ class GameViewController: UIViewController {
         self.gameView.backgroundColor = UIColor.black
     }
     
-    private func dispatchTouchAction(for action: (CGPoint) -> Void, using touches: Set<UITouch>) {
-        guard let point = touches.first?.location(in: gameView) else { return }
-        action(point)
-    }
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        dispatchTouchAction(for: gameController.handleTouchesBegan, using: touches)
+        guard let point = touches.first?.location(in: gameView) else { return }
+        gameController.handleTouchesBegan(at: point)
     }
     
     override var shouldAutorotate: Bool {
