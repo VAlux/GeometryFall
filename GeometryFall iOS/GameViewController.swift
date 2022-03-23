@@ -20,7 +20,6 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         
         self.gameController = GameController(sceneRenderer: gameView)
-        
         self.gameView.allowsCameraControl = false
         self.gameView.backgroundColor = UIColor.black
     }
@@ -32,14 +31,6 @@ class GameViewController: UIViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         dispatchTouchAction(for: gameController.handleTouchesBegan, using: touches)
-    }
-    
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        dispatchTouchAction(for: gameController.handleTouchesMoved, using: touches)
-    }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        dispatchTouchAction(for: gameController.handleTouchesEnded, using: touches)
     }
     
     override var shouldAutorotate: Bool {

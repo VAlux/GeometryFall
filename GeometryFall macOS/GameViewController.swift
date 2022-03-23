@@ -7,6 +7,7 @@
 
 import Cocoa
 import SceneKit
+import Foundation
 
 class GameViewController: NSViewController {
     
@@ -20,38 +21,20 @@ class GameViewController: NSViewController {
         super.viewDidLoad()
         
         self.gameController = GameController(sceneRenderer: gameView)
-        
-        // Allow the user to manipulate the camera
         self.gameView.allowsCameraControl = false
-        
-        // Show statistics such as fps and timing information
         self.gameView.showsStatistics = false
-        
-        // Configure the view
         self.gameView.backgroundColor = NSColor.black
-        
-        // Add a click gesture recognizer
-        let clickGesture = NSPressGestureRecognizer(target: self, action: #selector(handleClick(_:)))
-        clickGesture.minimumPressDuration = 0
-        
-        var gestureRecognizers = gameView.gestureRecognizers
-        gestureRecognizers.insert(clickGesture, at: 0)
-        self.gameView.gestureRecognizers = gestureRecognizers
     }
-    
-    @objc
-    func handleClick(_ gestureRecognizer: NSGestureRecognizer) {
-        switch gestureRecognizer.state {
-        case .began:
-            gameController.handleTouchesBegan(at: gestureRecognizer.location(in: gameView))
-            break
-        case .ended:
-            gameController.handleTouchesEnded(at: gestureRecognizer.location(in: gameView))
-            break
-        case .changed:
-            gameController.handleTouchesMoved(at: gestureRecognizer.location(in: gameView))
-            break
-        default: break
-        }
+
+    override func mouseDown(with event: NSEvent) {
+        super.mouseDown(with: event)
+        let point = gameView.convert(event.locationInWindow, to: nil).cgPoint
+        gameController.handleTouchesBegan(at: point)
+    }
+}
+
+extension NSPoint {
+    var cgPoint: CGPoint {
+        .init(x: x, y: y)
     }
 }

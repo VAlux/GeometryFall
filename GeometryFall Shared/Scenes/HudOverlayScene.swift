@@ -12,9 +12,9 @@ class HudOverlayScene : SKScene {
     
     var scoreNode: SKLabelNode!
     var pauseButton: ButtonNode!
-    var dispatcher: InputDispatcher!
     
     private let scoreLabelPadding = 10
+    private let pauseButtonSize = CGFloat(50)
     private let scoreLabelFontScale = CGFloat(20)
     
     var score: UInt = 0 {
@@ -25,11 +25,10 @@ class HudOverlayScene : SKScene {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        self.scoreNode = coder.decodeObject(of: SKLabelNode.self, forKey: "ScoreLabel")
     }
     
-    init(size: CGSize, dispatcher inputDispatcher: InputDispatcher) {
-        self.dispatcher = inputDispatcher
-        
+    override init(size: CGSize) {
         super.init(size: size)
         backgroundColor = SCNColor.clear
         
@@ -48,11 +47,15 @@ class HudOverlayScene : SKScene {
             pressedTexture: SKTexture(imageNamed: "Play Button"),
             disabledTexture: nil)
         
-        pauseButton.position = .init(x: 50, y: 50)
-        pauseButton.size = .init(width: 50, height: 50)
-        dispatcher.register(target: pauseButton)
+        pauseButton.position = .init(x: frame.width - pauseButtonSize, y: frame.height - pauseButtonSize)
+        pauseButton.size = .init(width: pauseButtonSize, height: pauseButtonSize)
        
         addChild(scoreNode)
         addChild(pauseButton)
+    }
+    
+    override func didMove(to view: SKView) {
+        super.didMove(to: view)
+        childNode(withName: "")
     }
 }

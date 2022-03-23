@@ -26,10 +26,8 @@
 		326ECD4727D3A9550006CDF5 /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326ECD2427D3A9540006CDF5 /* GameController.swift */; };
 		326ECD4A27D3A9550006CDF5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 326ECD2627D3A9550006CDF5 /* Assets.xcassets */; };
 		326ECD4B27D3A9550006CDF5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 326ECD2627D3A9550006CDF5 /* Assets.xcassets */; };
-		32FE258227E7BFC100A2752D /* Clickable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FE258127E7BFC100A2752D /* Clickable.swift */; };
-		32FE258327E7BFC100A2752D /* Clickable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FE258127E7BFC100A2752D /* Clickable.swift */; };
-		32FE258527E87CC500A2752D /* InputDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FE258427E87CC500A2752D /* InputDispatcher.swift */; };
-		32FE258627E87CC500A2752D /* InputDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FE258427E87CC500A2752D /* InputDispatcher.swift */; };
+		3279E93E27EA5105005F9997 /* HUDScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3279E93D27EA5105005F9997 /* HUDScene.sks */; };
+		3279E93F27EA5105005F9997 /* HUDScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3279E93D27EA5105005F9997 /* HUDScene.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,8 +47,7 @@
 		326ECD4027D3A9550006CDF5 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		326ECD4327D3A9550006CDF5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		326ECD4527D3A9550006CDF5 /* GeometryFall_macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GeometryFall_macOS.entitlements; sourceTree = "<group>"; };
-		32FE258127E7BFC100A2752D /* Clickable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clickable.swift; sourceTree = "<group>"; };
-		32FE258427E87CC500A2752D /* InputDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputDispatcher.swift; sourceTree = "<group>"; };
+		3279E93D27EA5105005F9997 /* HUDScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = HUDScene.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,8 +103,7 @@
 				326ECD2427D3A9540006CDF5 /* GameController.swift */,
 				326ECD2627D3A9550006CDF5 /* Assets.xcassets */,
 				3207104D27D4E6A500DE8AFE /* ExplosionParticleSystem.scn */,
-				32FE258127E7BFC100A2752D /* Clickable.swift */,
-				32FE258427E87CC500A2752D /* InputDispatcher.swift */,
+				3279E93D27EA5105005F9997 /* HUDScene.sks */,
 			);
 			path = "GeometryFall Shared";
 			sourceTree = "<group>";
@@ -226,6 +222,7 @@
 				3207104E27D4E6A500DE8AFE /* ExplosionParticleSystem.scn in Resources */,
 				326ECD3727D3A9550006CDF5 /* LaunchScreen.storyboard in Resources */,
 				326ECD4A27D3A9550006CDF5 /* Assets.xcassets in Resources */,
+				3279E93E27EA5105005F9997 /* HUDScene.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,6 +232,7 @@
 			files = (
 				326ECD4427D3A9550006CDF5 /* Main.storyboard in Resources */,
 				326ECD4B27D3A9550006CDF5 /* Assets.xcassets in Resources */,
+				3279E93F27EA5105005F9997 /* HUDScene.sks in Resources */,
 				3207104F27D4E6A500DE8AFE /* ExplosionParticleSystem.scn in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -250,10 +248,8 @@
 				326ECD3127D3A9550006CDF5 /* GameViewController.swift in Sources */,
 				3207105227D5599200DE8AFE /* HudOverlayScene.swift in Sources */,
 				326ECD4627D3A9550006CDF5 /* GameController.swift in Sources */,
-				32FE258227E7BFC100A2752D /* Clickable.swift in Sources */,
 				326ECD2F27D3A9550006CDF5 /* AppDelegate.swift in Sources */,
 				3207105927D7573800DE8AFE /* ButtonNode.swift in Sources */,
-				32FE258527E87CC500A2752D /* InputDispatcher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,10 +261,8 @@
 				326ECD4127D3A9550006CDF5 /* GameViewController.swift in Sources */,
 				3207105327D5599200DE8AFE /* HudOverlayScene.swift in Sources */,
 				326ECD4727D3A9550006CDF5 /* GameController.swift in Sources */,
-				32FE258327E7BFC100A2752D /* Clickable.swift in Sources */,
 				326ECD3F27D3A9550006CDF5 /* AppDelegate.swift in Sources */,
 				3255C17027E6786F00B7B5C4 /* ButtonNode.swift in Sources */,
-				32FE258627E87CC500A2752D /* InputDispatcher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

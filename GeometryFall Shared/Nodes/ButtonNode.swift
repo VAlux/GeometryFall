@@ -47,39 +47,39 @@ public class ButtonNode: SKSpriteNode {
     func setClickAction(with action: @escaping (ButtonNode) -> Void) {
         self.clickAction = action
     }
-}
-
-extension ButtonNode : Clickable {
-    func handleTouchesBegan(at location: CGPoint) -> Bool {
-        if isEnabled && frame.contains(location) {
+    
+    private func handleEnabled() {
+        if isEnabled {
             isPressed = true
             clickAction?(self)
-            return true
         }
-        
-        return false
     }
     
-    func handleTouchesMoved(at location: CGPoint) -> Bool {
-        if isEnabled {
-            if frame.contains(location) {
-                isPressed = true
-            } else {
-                isPressed = false
-            }
-            
-            return isPressed
-        }
-        
-        return false
-    }
-    
-    func handleTouchesEnded(at location: CGPoint) -> Bool {
+    private func handleDisabled() {
         if isEnabled {
             isPressed = false
-            return true
         }
-        
-        return false
     }
+    
+#if os(macOS)
+    public override func mouseDown(with event: NSEvent) {
+        super.mouseDown(with: event)
+        handleEnabled()
+    }
+    
+    public override func mouseUp(with event: NSEvent) {
+        super.mouseUp(with: event)
+        handleDisabled()
+    }
+#elseif os(iOS)
+    public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        handleEnabled()
+    }
+    
+    public override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
+        handleDisabled()
+    }
+#endif
 }
