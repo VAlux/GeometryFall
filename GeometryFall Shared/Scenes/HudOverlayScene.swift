@@ -17,6 +17,8 @@ class HudOverlayScene : SKScene {
     private let pauseButtonSize = CGFloat(50)
     private let scoreLabelFontScale = CGFloat(20)
     
+    let pauseButtonEvent = EventEmitter<ButtonEvent>()
+    
     var score: UInt = 0 {
         didSet {
             self.scoreLabelNode.text = "Score: \(score)"
@@ -31,7 +33,6 @@ class HudOverlayScene : SKScene {
         super.init(size: size)
         backgroundColor = SCNColor.clear
         
-        isUserInteractionEnabled = false
         scaleMode = .aspectFill
     }
     
@@ -42,19 +43,18 @@ class HudOverlayScene : SKScene {
             self.scoreLabelNode = scoreLabel
         } else { return }
         
-        self.scoreLabelNode.fontColor = SCNColor.white
-        self.scoreLabelNode.fontSize = size.height / scoreLabelFontScale
-        self.scoreLabelNode.verticalAlignmentMode = .bottom
-        self.scoreLabelNode.horizontalAlignmentMode = .left
         self.scoreLabelNode.position =
             .init(x: center.x - (size.width - scoreLabelPadding), y: center.y - (size.height - scoreLabelPadding))
         
-        if let pauseButton = childNode(withName: "PlayButton") as? ButtonNode {
+        if let pauseButton = childNode(withName: "PauseButton") as? ButtonNode {
             self.pauseButtonNode = pauseButton
         } else { return }
 
         self.pauseButtonNode.position = .init(x: center.x - pauseButtonSize, y: center.y - pauseButtonSize)
         self.pauseButtonNode.size = .init(width: pauseButtonSize, height: pauseButtonSize)
+        self.pauseButtonNode.isUserInteractionEnabled = true
+        
+        self.pauseButtonNode.clickAction = { _ in self.pauseButtonEvent.emit(.KEY_DOWN) }
     }
     
     override func didChangeSize(_ oldSize: CGSize) {
@@ -66,5 +66,7 @@ class HudOverlayScene : SKScene {
         super.didMove(to: view)
         size = view.frame.size
         recalculateNodesDimensions()
+        
+        isUserInteractionEnabled = false
     }
 }

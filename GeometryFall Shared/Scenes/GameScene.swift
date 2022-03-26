@@ -13,6 +13,7 @@ class GameScene : SCNScene, SCNSceneRendererDelegate {
     
     private var renderer: SCNSceneRenderer!
     private var hud: HudOverlayScene!
+    private var menu: MainMenuScene!
     private var cameraNode: SCNNode!
     private var cubeCreationTime: TimeInterval = 0
     private let cubeCreationTimeout: TimeInterval = 0.8
@@ -39,11 +40,24 @@ class GameScene : SCNScene, SCNSceneRendererDelegate {
                                   position: .init(0, -10, 0),
                                   rotation: .init(-1, 0, 0, Float.pi/2))
         
-        self.hud = SKScene(fileNamed: "HUDScene") as? HudOverlayScene
+        self.hud = loadSKScene(withName: "HUDScene")
+        self.menu = loadSKScene(withName: "MainMenuScene")
+        
         self.renderer.overlaySKScene = hud
+        self.hud.pauseButtonEvent.subscribe(for: { _ in self.toggleMenu() })
         
         self.rootNode.addChildNode(cameraNode)
         self.rootNode.addChildNode(floorNode)
+    }
+    
+    private func toggleMenu() {
+        self.isPaused = !self.isPaused
+        
+        if self.isPaused {
+            self.hud.addChild(self.menu)
+        } else {
+            self.menu.removeFromParent()
+        }
     }
     
     private func createCameraNode() -> SCNNode {
@@ -52,6 +66,13 @@ class GameScene : SCNScene, SCNSceneRendererDelegate {
         cameraNode.camera?.zFar = 400
         cameraNode.position = .init(x: 3, y: 35, z: 50)
         return cameraNode
+    }
+    
+    private func loadSKScene<T: SKScene>(withName fileName: String) -> T? {
+        guard let scene = SKScene(fileNamed: fileName) as? T
+        else { fatalError("Was not able to load scene with name: \(fileName)") }
+        
+        return scene
     }
     
     private func loadParticleSystem(from sceneName: String, withName systemName: String) -> SCNParticleSystem {
@@ -84,6 +105,8 @@ class GameScene : SCNScene, SCNSceneRendererDelegate {
     }
     
     func handleClick(at location: CGPoint) {
+        if self.isPaused { return }
+        
         if let node = renderer.hitTest(location, options: nil).first?.node as? GameBoxNode {
             spawnParticle(at: node.presentation.position)
             node.removeFromParentNode()

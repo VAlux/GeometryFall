@@ -13,7 +13,8 @@ public class ButtonNode: SKSpriteNode {
     private var regularTexture: SKTexture!
     private var pressedTexture: SKTexture?
     private var disabledTexture: SKTexture?
-    private var clickAction: ((ButtonNode) -> Void)?
+    
+    var clickAction: ((ButtonNode) -> Void)?
     
     var isEnabled: Bool = true {
         didSet {
@@ -33,6 +34,14 @@ public class ButtonNode: SKSpriteNode {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        self.regularTexture = self.texture
+        if let pressed = self.userData?["pressed"] as? String {
+            self.pressedTexture = .init(imageNamed: pressed)
+        }
+        
+        if let disabled = self.userData?["disabled"] as? String {
+            self.disabledTexture = .init(imageNamed: disabled)
+        }
     }
     
     init(regularTexture: SKTexture, pressedTexture: SKTexture?, disabledTexture: SKTexture?) {
@@ -41,11 +50,6 @@ public class ButtonNode: SKSpriteNode {
         self.regularTexture = regularTexture
         self.pressedTexture = pressedTexture
         self.disabledTexture = disabledTexture
-        self.isUserInteractionEnabled = true
-    }
-    
-    func setClickAction(with action: @escaping (ButtonNode) -> Void) {
-        self.clickAction = action
     }
     
     private func handleEnabled() {

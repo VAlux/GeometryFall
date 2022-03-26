@@ -28,6 +28,12 @@
 		326ECD4B27D3A9550006CDF5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 326ECD2627D3A9550006CDF5 /* Assets.xcassets */; };
 		3279E93E27EA5105005F9997 /* HUDScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3279E93D27EA5105005F9997 /* HUDScene.sks */; };
 		3279E93F27EA5105005F9997 /* HUDScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3279E93D27EA5105005F9997 /* HUDScene.sks */; };
+		32FC569427EE11FD001EE6F9 /* MainMenuScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 32FC569327EE11FD001EE6F9 /* MainMenuScene.sks */; };
+		32FC569527EE11FD001EE6F9 /* MainMenuScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 32FC569327EE11FD001EE6F9 /* MainMenuScene.sks */; };
+		32FC569727EE13CE001EE6F9 /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FC569627EE13CE001EE6F9 /* MainMenuScene.swift */; };
+		32FC569827EE13CE001EE6F9 /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FC569627EE13CE001EE6F9 /* MainMenuScene.swift */; };
+		32FC569A27EE5D3B001EE6F9 /* EventEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FC569927EE5D3B001EE6F9 /* EventEmitter.swift */; };
+		32FC569B27EE5D3B001EE6F9 /* EventEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FC569927EE5D3B001EE6F9 /* EventEmitter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +54,9 @@
 		326ECD4327D3A9550006CDF5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		326ECD4527D3A9550006CDF5 /* GeometryFall_macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GeometryFall_macOS.entitlements; sourceTree = "<group>"; };
 		3279E93D27EA5105005F9997 /* HUDScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = HUDScene.sks; sourceTree = "<group>"; };
+		32FC569327EE11FD001EE6F9 /* MainMenuScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MainMenuScene.sks; sourceTree = "<group>"; };
+		32FC569627EE13CE001EE6F9 /* MainMenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuScene.swift; sourceTree = "<group>"; };
+		32FC569927EE5D3B001EE6F9 /* EventEmitter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventEmitter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,8 +80,11 @@
 		3207105027D5597000DE8AFE /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				3279E93D27EA5105005F9997 /* HUDScene.sks */,
+				32FC569327EE11FD001EE6F9 /* MainMenuScene.sks */,
 				3207105127D5599200DE8AFE /* HudOverlayScene.swift */,
 				3207105427D643E900DE8AFE /* GameScene.swift */,
+				32FC569627EE13CE001EE6F9 /* MainMenuScene.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -103,7 +115,7 @@
 				326ECD2427D3A9540006CDF5 /* GameController.swift */,
 				326ECD2627D3A9550006CDF5 /* Assets.xcassets */,
 				3207104D27D4E6A500DE8AFE /* ExplosionParticleSystem.scn */,
-				3279E93D27EA5105005F9997 /* HUDScene.sks */,
+				32FC569927EE5D3B001EE6F9 /* EventEmitter.swift */,
 			);
 			path = "GeometryFall Shared";
 			sourceTree = "<group>";
@@ -219,6 +231,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				326ECD3427D3A9550006CDF5 /* Main.storyboard in Resources */,
+				32FC569427EE11FD001EE6F9 /* MainMenuScene.sks in Resources */,
 				3207104E27D4E6A500DE8AFE /* ExplosionParticleSystem.scn in Resources */,
 				326ECD3727D3A9550006CDF5 /* LaunchScreen.storyboard in Resources */,
 				326ECD4A27D3A9550006CDF5 /* Assets.xcassets in Resources */,
@@ -233,6 +246,7 @@
 				326ECD4427D3A9550006CDF5 /* Main.storyboard in Resources */,
 				326ECD4B27D3A9550006CDF5 /* Assets.xcassets in Resources */,
 				3279E93F27EA5105005F9997 /* HUDScene.sks in Resources */,
+				32FC569527EE11FD001EE6F9 /* MainMenuScene.sks in Resources */,
 				3207104F27D4E6A500DE8AFE /* ExplosionParticleSystem.scn in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -244,11 +258,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32FC569A27EE5D3B001EE6F9 /* EventEmitter.swift in Sources */,
 				3207105527D643E900DE8AFE /* GameScene.swift in Sources */,
 				326ECD3127D3A9550006CDF5 /* GameViewController.swift in Sources */,
 				3207105227D5599200DE8AFE /* HudOverlayScene.swift in Sources */,
 				326ECD4627D3A9550006CDF5 /* GameController.swift in Sources */,
 				326ECD2F27D3A9550006CDF5 /* AppDelegate.swift in Sources */,
+				32FC569727EE13CE001EE6F9 /* MainMenuScene.swift in Sources */,
 				3207105927D7573800DE8AFE /* ButtonNode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -257,11 +273,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32FC569B27EE5D3B001EE6F9 /* EventEmitter.swift in Sources */,
 				3207105627D643E900DE8AFE /* GameScene.swift in Sources */,
 				326ECD4127D3A9550006CDF5 /* GameViewController.swift in Sources */,
 				3207105327D5599200DE8AFE /* HudOverlayScene.swift in Sources */,
 				326ECD4727D3A9550006CDF5 /* GameController.swift in Sources */,
 				326ECD3F27D3A9550006CDF5 /* AppDelegate.swift in Sources */,
+				32FC569827EE13CE001EE6F9 /* MainMenuScene.swift in Sources */,
 				3255C17027E6786F00B7B5C4 /* ButtonNode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
