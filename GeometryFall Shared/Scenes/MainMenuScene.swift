@@ -8,6 +8,18 @@
 import Foundation
 import SpriteKit
 
-class MainMenuScene : SKScene {
+class MainMenuScene : GFSKScene {
     
+    @SKNamedNode("Background")
+    var backgroundNode: SKSpriteNode!
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.physicsBody = nil
+    }
+    
+    override func didChangeSize(_ oldSize: CGSize) {
+        super.didChangeSize(oldSize)
+        self.backgroundNode.size = oldSize
+    }
 }

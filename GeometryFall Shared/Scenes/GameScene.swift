@@ -11,9 +11,13 @@ import SpriteKit
 
 class GameScene : SCNScene, SCNSceneRendererDelegate {
     
-    private var renderer: SCNSceneRenderer!
+    @SKNamedScene("HUDScene")
     private var hud: HudOverlayScene!
+    
+    @SKNamedScene("MainMenuScene")
     private var menu: MainMenuScene!
+    
+    private var renderer: SCNSceneRenderer!
     private var cameraNode: SCNNode!
     private var cubeCreationTime: TimeInterval = 0
     private let cubeCreationTimeout: TimeInterval = 0.8
@@ -40,9 +44,6 @@ class GameScene : SCNScene, SCNSceneRendererDelegate {
                                   position: .init(0, -10, 0),
                                   rotation: .init(-1, 0, 0, Float.pi/2))
         
-        self.hud = loadSKScene(withName: "HUDScene")
-        self.menu = loadSKScene(withName: "MainMenuScene")
-        
         self.renderer.overlaySKScene = hud
         self.hud.pauseButtonEvent.subscribe(for: { _ in self.toggleMenu() })
         
@@ -54,7 +55,8 @@ class GameScene : SCNScene, SCNSceneRendererDelegate {
         self.isPaused = !self.isPaused
         
         if self.isPaused {
-            self.hud.addChild(self.menu)
+            self.hud.insertChild(self.menu, at: 0)
+            self.menu.didChangeSize(hud.size)
         } else {
             self.menu.removeFromParent()
         }
@@ -68,7 +70,7 @@ class GameScene : SCNScene, SCNSceneRendererDelegate {
         return cameraNode
     }
     
-    private func loadSKScene<T: SKScene>(withName fileName: String) -> T? {
+    private func loadSKScene<T: SKScene>(withName fileName: String) -> T {
         guard let scene = SKScene(fileNamed: fileName) as? T
         else { fatalError("Was not able to load scene with name: \(fileName)") }
         
@@ -121,6 +123,7 @@ class GameScene : SCNScene, SCNSceneRendererDelegate {
     }
     
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
+        if self.isPaused { return }
         if time > cubeCreationTime {
             let node = GameBoxNode(target: arc4random_uniform(2) == 1)
             let randomDirection = CGFloat(arc4random_uniform(10)) - 5

@@ -8,7 +8,7 @@
 import Foundation
 import SpriteKit
 
-public class ButtonNode: SKSpriteNode {
+class ButtonNode: SKSpriteNode {
     
     private var regularTexture: SKTexture!
     private var pressedTexture: SKTexture?
@@ -66,22 +66,22 @@ public class ButtonNode: SKSpriteNode {
     }
     
 #if os(macOS)
-    public override func mouseDown(with event: NSEvent) {
+    override func mouseDown(with event: NSEvent) {
         super.mouseDown(with: event)
         handleEnabled()
     }
     
-    public override func mouseUp(with event: NSEvent) {
+    override func mouseUp(with event: NSEvent) {
         super.mouseUp(with: event)
         handleDisabled()
     }
 #elseif os(iOS)
-    public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         handleEnabled()
     }
     
-    public override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
         handleDisabled()
     }
