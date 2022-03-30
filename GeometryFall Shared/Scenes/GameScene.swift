@@ -45,8 +45,11 @@ class GameScene : SCNScene, SCNSceneRendererDelegate {
                                   rotation: .init(-1, 0, 0, Float.pi/2))
         
         self.renderer.overlaySKScene = hud
-        self.hud.pauseButtonEvent.subscribe(for: { _ in self.toggleMenu() })
         
+        self.hud.pauseButton.click.subscribe {
+            evt in if evt == .down { self.toggleMenu() }
+        }
+
         self.rootNode.addChildNode(cameraNode)
         self.rootNode.addChildNode(floorNode)
     }

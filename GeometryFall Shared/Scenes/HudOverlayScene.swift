@@ -14,13 +14,15 @@ class HudOverlayScene : GFSKScene {
     var scoreLabelNode: SKLabelNode!
     
     @SKNamedNode("PauseButton")
-    var pauseButtonNode: ButtonNode!
+    private var pauseButtonNode: ButtonNode!
+    
+    var pauseButton = ClickableNode()
+
+    let pauseButtonClickEvent = EventEmitter<PointingDeviceEvent>()
     
     private let scoreLabelPadding = CGFloat(50)
     private let pauseButtonSize = CGFloat(50)
     private let scoreLabelFontScale = CGFloat(20)
-    
-    let pauseButtonEvent = EventEmitter<ButtonEvent>()
     
     var score: UInt = 0 {
         didSet {
@@ -29,16 +31,34 @@ class HudOverlayScene : GFSKScene {
     }
     
     private func recalculateNodesDimensions() {
+        guard self.nodesLoaded else { return }
+        
         let center = CGPoint(x: size.width / 2, y: size.height / 2)
         
-        self.scoreLabelNode.position =
-            .init(x: center.x - (size.width - scoreLabelPadding), y: center.y - (size.height - scoreLabelPadding))
+        self.scoreLabelNode.position = .init(
+            x: center.x - (size.width - scoreLabelPadding),
+            y: center.y - (size.height - scoreLabelPadding))
         
-        self.pauseButtonNode.position = .init(x: center.x - pauseButtonSize, y: center.y - pauseButtonSize)
-        self.pauseButtonNode.size = .init(width: pauseButtonSize, height: pauseButtonSize)
-        self.pauseButtonNode.isUserInteractionEnabled = true
+        self.pauseButton.position = .init(x: center.x - pauseButtonSize, y: center.y - pauseButtonSize)
+    }
+    
+    override func sceneDidLoad() {
+        super.sceneDidLoad()
         
-        self.pauseButtonNode.clickAction = { _ in self.pauseButtonEvent.emit(.KEY_DOWN) }
+        self.isUserInteractionEnabled = false
+        self.pauseButton.isUserInteractionEnabled = true
+        
+        let buttonSize = CGSize(width: pauseButtonSize, height: pauseButtonSize)
+        
+        self.pauseButtonNode.position = .zero
+        self.pauseButtonNode.size = buttonSize
+        self.pauseButtonNode.isUserInteractionEnabled = false
+        self.pauseButtonNode.removeFromParent()
+        
+        self.pauseButton.size = buttonSize
+        
+        pauseButton.addChild(self.pauseButtonNode)
+        addChild(pauseButton)
     }
     
     override func didChangeSize(_ oldSize: CGSize) {
@@ -48,9 +68,6 @@ class HudOverlayScene : GFSKScene {
     
     override func didMove(to view: SKView) {
         super.didMove(to: view)
-        size = view.frame.size
         recalculateNodesDimensions()
-        
-        isUserInteractionEnabled = false
     }
 }

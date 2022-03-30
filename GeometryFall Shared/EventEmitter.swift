@@ -8,24 +8,37 @@
 import Foundation
 import CloudKit
 
-typealias Listener<T> = (_ event: T) -> Void
+typealias Action<T> = (T) -> Void
 
-enum ButtonEvent {
-    case KEY_DOWN, KEY_UP
+class Listener<T> {
+    var action: Action<T>!
+    
+    init(_ action: @escaping Action<T>) {
+        self.action = action
+    }
+}
+
+enum PointingDeviceEvent {
+    case down, up, hover, moved
 }
 
 class EventEmitter<T> {
-    private var listener: Listener<T>?
+    private var listeners: [Listener<T>] = []
     
-    public func subscribe(for listener: @escaping Listener<T>) {
-        self.listener = listener
+    public func subscribe(for listener: Listener<T>) {
+        self.listeners.append(listener)
+    }
+    
+    public func subscribe(for action: @escaping Action<T>) {
+        self.listeners.append(.init(action))
     }
 
-    public func unsubscribe() {
-        self.listener = nil
+    public func unsubscribe(from listener: Listener<T>) {
+        guard let index = self.listeners.firstIndex(where: { $0 === listener }) else { return }
+        self.listeners.remove(at: index)
     }
     
     public func emit(_ event: T) {
-        listener?(event)
+        self.listeners.forEach { $0.action(event) }
     }
 }

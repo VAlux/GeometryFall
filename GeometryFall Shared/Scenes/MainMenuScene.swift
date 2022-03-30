@@ -20,6 +20,8 @@ class MainMenuScene : GFSKScene {
     
     override func didChangeSize(_ oldSize: CGSize) {
         super.didChangeSize(oldSize)
-        self.backgroundNode.size = oldSize
+        if self.nodesLoaded {
+            self.backgroundNode.size = oldSize
+        }
     }
 }

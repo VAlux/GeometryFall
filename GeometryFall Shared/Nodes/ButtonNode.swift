@@ -14,8 +14,6 @@ class ButtonNode: SKSpriteNode {
     private var pressedTexture: SKTexture?
     private var disabledTexture: SKTexture?
     
-    var clickAction: ((ButtonNode) -> Void)?
-    
     var isEnabled: Bool = true {
         didSet {
             if disabledTexture != nil {
@@ -51,39 +49,10 @@ class ButtonNode: SKSpriteNode {
         self.pressedTexture = pressedTexture
         self.disabledTexture = disabledTexture
     }
-    
-    private func handleEnabled() {
-        if isEnabled {
-            isPressed = true
-            clickAction?(self)
-        }
+}
+
+extension ButtonNode: ClickEventConsumer {
+    func consumeClickEvent(for event: EventEmitter<PointingDeviceEvent>) {
+        event.subscribe { evt in self.isPressed = evt == .down }
     }
-    
-    private func handleDisabled() {
-        if isEnabled {
-            isPressed = false
-        }
-    }
-    
-#if os(macOS)
-    override func mouseDown(with event: NSEvent) {
-        super.mouseDown(with: event)
-        handleEnabled()
-    }
-    
-    override func mouseUp(with event: NSEvent) {
-        super.mouseUp(with: event)
-        handleDisabled()
-    }
-#elseif os(iOS)
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesBegan(touches, with: event)
-        handleEnabled()
-    }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesEnded(touches, with: event)
-        handleDisabled()
-    }
-#endif
 }

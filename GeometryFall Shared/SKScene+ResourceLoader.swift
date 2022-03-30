@@ -44,6 +44,9 @@ class SKNamedNode<T: SKNode>: NamedResource {
 }
 
 class GFSKScene: SKScene {
+    
+    var nodesLoaded = false
+    
     override init() {
         super.init()
         loadNodes()
@@ -59,13 +62,8 @@ class GFSKScene: SKScene {
         loadNodes()
     }
     
-    override func didMove(to view: SKView) {
-        super.didMove(to: view)
-        loadNodes()
-    }
-    
-    override func didChangeSize(_ oldSize: CGSize) {
-        super.didChangeSize(oldSize)
+    override func sceneDidLoad() {
+        super.sceneDidLoad()
         loadNodes()
     }
     
@@ -73,5 +71,7 @@ class GFSKScene: SKScene {
         Mirror(reflecting: self).children
             .compactMap { $0.value as? NamedResource }
             .forEach { $0.load(from: self) }
+        
+        self.nodesLoaded = true
     }
 }
